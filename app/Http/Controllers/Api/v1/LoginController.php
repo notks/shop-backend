@@ -22,11 +22,10 @@ class LoginController extends Controller
         //error_log($req);
 
         $creds = $request->only(['email', 'password']);
-        error_log($request);
         if (!Auth::attempt($creds)) {
             return response(['message' => 'Invalid Email or password!'], 401);
         }
-        error_log($creds['email']);
+       
 
         $token = Auth::user()->createToken('accessToken')->accessToken;
         return response(['user' => Auth::user(), 'token' => $token]);

@@ -18,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(Cors::class)->get('/products', 'App\Http\Controllers\ProductsController@show');
 Route::middleware('auth:api', Cors::class)->get('authenticated', function () {
-    if (Auth::user()) {
-        return response(['authenticated' => false]);
-    }
-    return response(['authenticated' => true]);
+        return response(['authenticated' => true,'user'=>Auth::user()]);
+    
 });
 
 Route::middleware(Cors::class)->get('/token', 'App\Http\Controllers\CSRFController@show');
@@ -31,5 +29,5 @@ Route::middleware(Cors::class)->prefix('/user')->group(function () {
     });
     Route::middleware('auth:api')->delete('logout', 'App\Http\Controllers\Api\v1\LoginController@logout');
     Route::post('login', 'App\Http\Controllers\Api\v1\LoginController@login');
-    Route::get('/orders', 'App\Http\Controllers\Api\v1\OrderController@show');
+    Route::post('/orders', 'App\Http\Controllers\Api\v1\OrderController@show');
 });

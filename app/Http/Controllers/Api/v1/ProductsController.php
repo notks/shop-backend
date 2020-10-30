@@ -15,8 +15,7 @@ class ProductsController extends Controller
     }
     public function show(Request $request)
     {
-        error_log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
-        error_log($request);
+    
         $products = Products::all();
 
         return json_encode($products);
