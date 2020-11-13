@@ -17,6 +17,9 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('user_id');
+            $table->string('address');
+            $table->string('telephone');
+            $table->string('status')->default('processing');
             $table->timestamps();
         });
     }

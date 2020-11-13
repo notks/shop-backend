@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\v1\RController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\Cors;
 use Illuminate\Http\Request;
@@ -29,5 +30,7 @@ Route::middleware(Cors::class)->prefix('/user')->group(function () {
     });
     Route::middleware('auth:api')->delete('logout', 'App\Http\Controllers\Api\v1\LoginController@logout');
     Route::post('login', 'App\Http\Controllers\Api\v1\LoginController@login');
-    Route::post('/orders', 'App\Http\Controllers\Api\v1\OrderController@show');
+    Route::post('/orders', 'App\Http\Controllers\Api\v1\OrderController@save');
+    Route::post('register','App\Http\Controllers\Api\v1\NewUserController@register'  );
+    Route::get('orders','App\Http\Controllers\Api\v1\OrderController@show');
 });
