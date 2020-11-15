@@ -47,7 +47,7 @@ class OrderController extends Controller
 
     public function show()
     {
-     $orders=Order::where('user_id',Auth::user()->id)->join('users','user_id','users.id')->join('products','product_id','products.id')->get();
+     $orders=Order::select('orders.*','products.name','products.price','products.image')->where('user_id',Auth::user()->id)->join('products','product_id','products.id')->get();
      return $orders;
     }
 }
